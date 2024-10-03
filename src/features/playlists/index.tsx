@@ -1,10 +1,24 @@
-type Props = {}
+import {Column} from "../../components/FlexBox.tsx";
+import {Playlist} from "../../types.ts";
+import {PlaylistRow} from "./PlaylistRow.tsx";
+import styled from "styled-components";
 
-export const Playlists = ({}) => {
+const List = styled(Column)`
+    padding-top: 32px;
+`;
+
+type Props = {
+    selectedPlaylist: string | null,
+    playlists: Playlist[]
+}
+
+export const Playlists = ({selectedPlaylist, playlists}: Props) => {
 
     return (
-        <div>
-            <p>Hello, World!</p>
-        </div>
+        <List $gap={'10px'}>
+            {playlists.map(({name}) => (
+                <PlaylistRow name={name} selected={selectedPlaylist === name}/>
+            ))}
+        </List>
     );
 };

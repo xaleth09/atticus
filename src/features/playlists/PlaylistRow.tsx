@@ -1,10 +1,28 @@
-type Props = {}
+import {Row} from "../../components/FlexBox.tsx";
+import styled from "styled-components";
+import {useSelectedPlaylist} from "./hooks/useSelectedPlaylist.tsx";
 
-export const PlaylistRow = ({}) => {
+const ClickableRow = styled(Row)`
+    cursor: pointer;
+`;
+
+type Props = {
+    selected: boolean | null;
+    name: string;
+}
+
+export const PlaylistRow = ({
+                                name
+                            }: Props) => {
+
+    const {selectedPlaylist, setSelectedPlaylist} = useSelectedPlaylist();
 
     return (
-        <div>
-            <p>Hello, World!</p>
-        </div>
+        <ClickableRow
+            $padding={'24px'}
+            $backgroundColor={selectedPlaylist === name ? 'orchid' : 'white'}
+        >
+            <span>{name}</span>
+        </ClickableRow>
     );
 };

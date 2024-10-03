@@ -15,3 +15,8 @@ export interface Artist {
     name: string;
     albums: Album[];
 }
+
+export interface Playlist {
+    name: string;
+    songs: Song[]
+}
